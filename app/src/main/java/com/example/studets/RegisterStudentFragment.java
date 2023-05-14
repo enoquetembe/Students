@@ -82,7 +82,7 @@ public class RegisterStudentFragment extends Fragment {
     }
 
     private void addStudent() {
-        // Obtenha os detalhes do estudante do formulário
+
 
 
         String name = binding.txtName.getText().toString();
@@ -91,16 +91,13 @@ public class RegisterStudentFragment extends Fragment {
 
         if (!name.isEmpty() && !course.isEmpty() && !ageString.isEmpty()) {
             int age = Integer.parseInt(ageString);
-            // Crie um objeto Student com os detalhes
+
             Student student = new Student(name, course, age);
 
-            // Adicione o estudante à lista de estudantes
             students.add(student);
 
-            // Obtenha a referência do FragmentListStudents
             ListStudentsFragment listStudentsFragment = (ListStudentsFragment) getParentFragmentManager().findFragmentByTag("fragment_list_students");
 
-            // Atualize a lista de estudantes no FragmentListStudents
             if (listStudentsFragment != null) {
                 listStudentsFragment.updateStudentList(students);
             }
