@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/todos_ou_25" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupStudents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radioButtonAllStudents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/todos_estudantes" />
+
+            <RadioButton
+                android:id="@+id/radioButtonOver25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/maiores_de_25_anoss" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/todos_ou_ld" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupLdsStudents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radioButtonAllLdsStudents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/todos_estudantes" />
+
+            <RadioButton
+                android:id="@+id/radioButtonLdsStudents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/estudantesLDS" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+</layout>

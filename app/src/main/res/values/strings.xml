@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Studets</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nome">Nome</string>
+    <string name="curso">Curso</string>
+    <string name="idade">Idade</string>
+    <string name="registar">Registar</string>
+    <string name="estudantesLDS">Estudantes da LDS</string>
+    <string name="todos_estudantes">Todos os estudantes</string>
+    <string name="maiores_de_25_anoss">Maiores de 25 anos</string>
+    <string name="todos_ou_ld">Listar todos estudantes ou apenas da LDS:</string>
+    <string name="todos_ou_25">Listar todos estudantes ou apenas maiores de 25 anos:</string>
+</resources>
