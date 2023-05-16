@@ -7,10 +7,10 @@
         android:orientation="vertical">
 
         <!-- Aqui você pode adicionar a RecyclerView ou outro componente necessário para listar os estudantes -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewStudents"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+       <ListView
+           android:id="@+id/studentsLV"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
 
     </LinearLayout>
 </layout>

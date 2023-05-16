@@ -72,11 +72,10 @@ public class ListStudentsFragment extends Fragment {
         binding = FragmentListStudentsBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        studentList = new ArrayList<>();
-        studentAdapter = new StudentAdapter(studentList);
+        studentList = RegisterStudentFragment.students;
+        studentAdapter = new StudentAdapter(getContext(),studentList);
+        binding.studentsLV.setAdapter(studentAdapter);
 
-        binding.recyclerViewStudents.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.recyclerViewStudents.setAdapter(studentAdapter);
 
         System.out.println(studentList);
 
