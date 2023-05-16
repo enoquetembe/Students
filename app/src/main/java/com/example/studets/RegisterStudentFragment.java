@@ -1,5 +1,7 @@
 package com.example.studets;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.studets.databinding.FragmentRegisterStudentBinding;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -30,7 +33,7 @@ public class RegisterStudentFragment extends Fragment {
     private String mParam2;
 
     private FragmentRegisterStudentBinding binding;
-    static ArrayList<Student> students =  new ArrayList<>();
+  static ArrayList<Student> students =  new ArrayList<>();
 
 
     public RegisterStudentFragment() {
@@ -73,7 +76,24 @@ public class RegisterStudentFragment extends Fragment {
        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               addStudent();
+              // addStudent();
+               SharedPreferences preferences = getActivity().getSharedPreferences("Students-Xml", Context.MODE_PRIVATE);
+               SharedPreferences.Editor editor = preferences.edit();
+
+               students.add(new Student(binding.txtName.getText().toString(),
+                       binding.txtCourse.getText().toString(),
+                       Integer.parseInt(binding.txtAge.getText().toString())));
+
+               //serializa a lista de estudante em um JSON
+               Gson gson = new Gson();
+               String json = gson.toJson(students);
+               editor.putString("studentsList", json);
+               editor.commit();
+
+               Toast.makeText(getContext(), "Gravado com sucesso", Toast.LENGTH_LONG).show();
+               binding.txtName.setText("");
+               binding.txtCourse.setText("");
+               binding.txtAge.setText("");
 
            }
        });
@@ -81,7 +101,7 @@ public class RegisterStudentFragment extends Fragment {
         return  view;
     }
 
-    private void addStudent() {
+  /*  private void addStudent() {
 
 
 
@@ -108,8 +128,8 @@ public class RegisterStudentFragment extends Fragment {
             Toast.makeText(requireContext(), "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show();
         }
 
-
-
-
     }
+
+   */
+
 }
