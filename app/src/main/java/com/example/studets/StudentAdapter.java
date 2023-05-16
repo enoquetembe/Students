@@ -1,8 +1,10 @@
 package com.example.studets;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,41 +12,46 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHolder> {
+public class StudentAdapter extends BaseAdapter {
     private ArrayList<Student> studentList;
 
-    public StudentAdapter(ArrayList<Student> studentList) {
-        this.studentList = studentList;
+    private Context context;
+    LayoutInflater inflater;
+
+    public StudentAdapter( Context context, ArrayList<Student> students) {
+        this.studentList = students;
+        this.context = context;
+        this.inflater = LayoutInflater.from(context);
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student, parent, false);
-        return new ViewHolder(view);
-    }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Student student = studentList.get(position);
-        holder.tvName.setText(student.getName());
-        holder.tvCourse.setText(student.getCourse());
-        holder.tvAge.setText(String.valueOf(student.getAge()));
-    }
-
-    @Override
-    public int getItemCount() {
+    public int getCount() {
         return studentList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvCourse, tvAge;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvCourse = itemView.findViewById(R.id.tvCourse);
-            tvAge = itemView.findViewById(R.id.tvAge);
-        }
+    @Override
+    public Object getItem(int position) {
+        return studentList.get(position);
     }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        convertView = inflater.inflate(R.layout.item_student, null);
+        TextView nameTV = convertView.findViewById(R.id.tvName);
+        TextView courseTV = convertView.findViewById(R.id.tvCourse);
+        TextView ageTV = convertView.findViewById(R.id.tvAge);
+
+        nameTV.setText(studentList.get(position).getName());
+        courseTV.setText(studentList.get(position).getCourse());
+        ageTV.setText(String.valueOf(studentList.get(position).getAge()));
+
+        return convertView;
+    }
+
 }

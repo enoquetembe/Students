@@ -30,7 +30,7 @@ public class RegisterStudentFragment extends Fragment {
     private String mParam2;
 
     private FragmentRegisterStudentBinding binding;
-    ArrayList<Student> students =  new ArrayList<>();
+    static ArrayList<Student> students =  new ArrayList<>();
 
 
     public RegisterStudentFragment() {
