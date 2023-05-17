@@ -1,17 +1,24 @@
 package com.example.studets;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.studets.databinding.FragmentListStudentsBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,11 +75,23 @@ public class ListStudentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        studentList = new ArrayList<>();
         // Inflate the layout for this fragment
         binding = FragmentListStudentsBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        studentList = RegisterStudentFragment.students;
+        //shared preferences
+        SharedPreferences preferences = getActivity().getSharedPreferences("Students-Xml", Context.MODE_PRIVATE );
+        Gson gson = new Gson();
+        String json = preferences.getString("studentsList","");
+
+        if (!json.isEmpty()) {
+            // Deserializar a string JSON de volta para a lista de estudantes
+            Type type = new TypeToken<ArrayList<Student>>() {}.getType();
+           studentList = gson.fromJson(json, type);
+
+        }
+
         studentAdapter = new StudentAdapter(getContext(),studentList);
         binding.studentsLV.setAdapter(studentAdapter);
 
